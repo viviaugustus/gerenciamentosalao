@@ -70,7 +70,7 @@ router.post("/authenticate", (request, response) =>{
 
 router.get("/logout", (request, response) =>{
     request.session.admin = undefined;
-    request.redirect("/");
+    response.redirect("/");
 })
 
 

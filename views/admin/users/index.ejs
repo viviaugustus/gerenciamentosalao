@@ -1,4 +1,5 @@
 <%- include ('../../partials/header.ejs') %>
+<%- include ("../../partials/navbar-loged.ejs") %>
 <div class="container">
     <hr>
     <h2>Usuários</h2>
@@ -20,6 +21,7 @@
                     <th><%= admin.id %></th>
                     <th><%= admin.name %></th>
                     <th><%= admin.email %></th>
+                    <!--
                     <th>
                         <form method="GET" action="/admin/users/edit/<%= admin.id %>" style="display: inline;">
                             <button type="submit" class="btn btn-warning">Editar</button>
@@ -29,6 +31,7 @@
                             <input type="hidden" name="id" value="<%= admin.id %>">
                         </form>
                     </th>
+                    -->
                 </tr>
             <% }) %>  
         </tbody>
