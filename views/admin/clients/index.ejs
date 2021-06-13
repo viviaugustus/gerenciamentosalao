@@ -1,0 +1,54 @@
+<%- include ("../../partials/header.ejs") %>
+<div class="container">
+    <hr>
+    <h2>Clientes</h2>
+    <a class="btn btn-success" href="/admin/clients/new">Cadastrar cliente</a>
+    <hr>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Endereço</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% clients.forEach(client => { %>
+                <tr>
+                    <th><%= client.id %></th>
+                    <th><%= client.name %></th>
+                    <th><%= client.cpf %></th>
+                    <th><%= client.phoneNumber %></th>
+                    <th><%= client.address %></th>
+                    <th>
+                        <form method="GET" action="/admin/clients/edit/<%= client.id %>" style="display: inline;">
+                            <button type="submit" class="btn btn-warning">Editar</button>
+                        </form>  
+                        <form method="POST" action="/clients/delete" style="display: inline;" onsubmit="confirmDelete(event, this)">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                            <input type="hidden" name="id" value="<%= client.id %>">
+                        </form>
+                    </th>
+                </tr>
+            <% }) %>  
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs') %>
+<script>
+    function confirmDelete(event, form){
+        event.preventDefault();
+        var decision = confirm("Você realmente deseja deletar está categoria?");
+
+        if(decision){
+            form.submit();
+        }else{
+
+        }
+    }
+</script>
+<%- include ("../../partials/footer.ejs") %>

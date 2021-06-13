@@ -1,0 +1,22 @@
+<%- include ("../../partials/header.ejs") %>
+
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Cadastrar cliente</h2>
+        </div>
+        <div class="card-body">
+            <form action="/clients/save" method="POST">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Nome"><br>
+                <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF"><br>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email"><br>
+                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Telefone"><br>
+                <input type="textarea" class="form-control" name="address" id="address" placeholder="Endereço"><br>
+                <button class="btn btn-success">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ("../../partials/footer.ejs") %>
