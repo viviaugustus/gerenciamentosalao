@@ -11,7 +11,7 @@ const Admin = connection.define('admins', {
         type: Sequelize.STRING,
         allowNull: false
      },
-     senha:{
+     password:{
         type: Sequelize.STRING,
         allowNull: false
      }

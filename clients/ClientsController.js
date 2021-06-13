@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Client = require("./Client");
+const adminAuth = require("../middlewares/adminAuth");
 
-router.get("/admin/clients/new", (request, response) => {
+router.get("/admin/clients/new", adminAuth, (request, response) => {
     response.render("admin/clients/create");
 });
 
@@ -29,7 +30,7 @@ router.post("/clients/save", (request, response) => {
     }
 });
 
-router.get("/admin/clients", (request, response) => {
+router.get("/admin/clients", adminAuth, (request, response) => {
     Client.findAll().then(clients =>{
         response.render("admin/clients/index", {clients: clients});
     });
@@ -55,7 +56,7 @@ router.post("/clients/delete", (request, response) => {
     }
 });
 
-router.get("/admin/clients/edit/:id", (request, response) => {
+router.get("/admin/clients/edit/:id", adminAuth, (request, response) => {
     var id = request.params.id;
 
     if(isNaN(id)){

@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const session = require("express-session");
 const connection = require("./database/database");
 
 //Models
@@ -16,9 +17,16 @@ const Service = require("./services/Service");
 
 //Controllers
 const clientsController = require("./clients/ClientsController");
+const adminController = require("./admin/AdminController");
 
 //View engine
 app.set('view engine','ejs');
+
+//Session
+app.use(session({
+    secret: "wfiubwefupwefawrgebrgufgyoerfg9perf",
+    cookie: {maxAge: 86400}
+}));
 
 //Body parser
 app.use(bodyParser.urlencoded({extend: false}));
@@ -37,6 +45,7 @@ connection
     
 //define Controllers
 app.use("/", clientsController);
+app.use("/", adminController);
 
 app.get("/", (request, response)=>{
     response.render("index");

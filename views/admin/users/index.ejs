@@ -1,0 +1,50 @@
+<%- include ('../../partials/header.ejs') %>
+<div class="container">
+    <hr>
+    <h2>Usuários</h2>
+    <a class="btn btn-success" href="/admin/users/create">Criar novo usuário</a>
+    <hr>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% admins.forEach(admin => { %>
+                <tr>
+                    <th><%= admin.id %></th>
+                    <th><%= admin.name %></th>
+                    <th><%= admin.email %></th>
+                    <th>
+                        <form method="GET" action="/admin/users/edit/<%= admin.id %>" style="display: inline;">
+                            <button type="submit" class="btn btn-warning">Editar</button>
+                        </form>  
+                        <form method="POST" action="/users/delete" style="display: inline;" onsubmit="confirmDelete(event, this)">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                            <input type="hidden" name="id" value="<%= admin.id %>">
+                        </form>
+                    </th>
+                </tr>
+            <% }) %>  
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../partials/footer.ejs') %>
+<script>
+    function confirmDelete(event, form){
+        event.preventDefault();
+        var decision = confirm("Você realmente deseja deletar está categoria?");
+
+        if(decision){
+            form.submit();
+        }else{
+
+        }
+    }   
+</script>
